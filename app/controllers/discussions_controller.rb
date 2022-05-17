@@ -53,6 +53,7 @@ private
   def discussion_params
     params.require(:discussion).permit(
       :name,
+      :category_id,
       :pinned,
       :closed,
       posts_attributes: [
