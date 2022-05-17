@@ -15,5 +15,11 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :notifications, only: %i[index] do
+    collection do
+      post "/mark_as_read", to: "notifications#read_all", to: "notifications#read_all", as: :read
+    end
+  end
+
   root to: "main#index"
 end
