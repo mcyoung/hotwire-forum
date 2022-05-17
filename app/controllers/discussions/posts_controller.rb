@@ -1,7 +1,7 @@
 class Discussions::PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_discussion
-  before_action :set_post, only: %i[show edit update]
+  before_action :set_post, only: %i[show edit update destroy]
 
   def show; end
 
@@ -27,6 +27,16 @@ class Discussions::PostsController < ApplicationController
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def destroy
+    @post.destroy!
+
+    respond_to do |format|
+      format.turbo_stream # Let the callback (model) render
+      # Maybe a Rails 7 thing, but if the `format.turbo_stream` isn't included above, this is causing the discussion to be deleted as well, weird!
+      format.html { redirect_to @post.discussion, notice: "Post Deleted!" }
     end
   end
 
