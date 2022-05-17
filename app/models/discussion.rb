@@ -3,6 +3,8 @@ class Discussion < ApplicationRecord
 
   validates :name, presence: true
 
+  has_many :posts, dependent: :destroy
+
   # Following string should match what's on the index.html.erb turbo_stream_from
   after_create_commit ->  { broadcast_prepend_to "discussions" }
   after_update_commit ->  { broadcast_replace_to "discussions" }
