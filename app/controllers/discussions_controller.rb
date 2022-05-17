@@ -1,9 +1,13 @@
 class DiscussionsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_discussion, only: %i[edit update destroy]
+  before_action :set_discussion, only: %i[show edit update destroy]
 
   def index
     @discussions = Discussion.all
+  end
+
+  def show
+    
   end
 
   def new
@@ -15,7 +19,7 @@ class DiscussionsController < ApplicationController
 
     respond_to do |format|
       if @discussion.save
-        format.html { redirect_to discussions_path, notice: "Created!" }
+        format.html { redirect_to @discussion, notice: "Created!" }
 
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -28,7 +32,7 @@ class DiscussionsController < ApplicationController
   def update
     respond_to do |format|
       if @discussion.update(discussion_params)
-        format.html { redirect_to discussions_path, notice: "Updated!" }
+        format.html { redirect_to @discussion, notice: "Updated!" }
 
       else
         format.html { render :edit, status: :unprocessable_entity }
