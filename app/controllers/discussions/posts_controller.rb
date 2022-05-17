@@ -3,7 +3,9 @@ class Discussions::PostsController < ApplicationController
   before_action :set_discussion
   before_action :set_post, only: %i[show edit update destroy]
 
-  def show; end
+  def show
+    sleep 2
+  end
 
   def create
     @post = @discussion.posts.new(post_params)
