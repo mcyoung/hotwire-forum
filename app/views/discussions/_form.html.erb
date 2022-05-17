@@ -26,6 +26,16 @@
     <%= f.check_box :closed %>
   </div>
 
+  <% if @discussion.new_record? %>
+    <div class="mb-3">
+      <%= f.fields_for :posts do |p| %>
+        <div class="mb-3">
+          <%= p.rich_text_area :body, placeholder: "Kick it off!" %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
   <div class="mb-3">
     <%= f.submit class: %w[btn btn-primary] %>
   </div>

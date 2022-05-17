@@ -12,6 +12,7 @@ class DiscussionsController < ApplicationController
 
   def new
     @discussion = Discussion.new
+    @discussion.posts.new
   end
 
   def create
@@ -52,7 +53,10 @@ private
     params.require(:discussion).permit(
       :name,
       :pinned,
-      :closed
+      :closed,
+      posts_attributes: [
+        :body
+      ]
     )  
   end
 
