@@ -5,7 +5,7 @@ class Categories::DiscussionsController < ApplicationController
   before_action :set_category
 
   def index
-    @discussions = @category.discussions.pinned_first
+    @pagy, @discussions = pagy(@category.discussions.pinned_first)
 
     render "discussions/index"
   end
