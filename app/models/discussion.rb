@@ -13,6 +13,8 @@ class Discussion < ApplicationRecord
   after_update_commit ->  { broadcast_replace_to "discussions" }
   after_destroy_commit -> { broadcast_remove_to "discussions" }
 
+  scope :pinned_first, -> { order(pinned: :desc, updated_at: :desc) }
+
   delegate :name, prefix: :category, to: :category, allow_nil: true
 
   def to_param
