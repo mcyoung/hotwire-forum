@@ -12,5 +12,7 @@ class User < ApplicationRecord
     has_many :discussions
     has_many :posts
     has_many :discussion_subscriptions
-  end  
+  end
+
+  has_many :notifications, as: :recipient
 end

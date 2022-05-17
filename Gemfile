@@ -74,8 +74,14 @@ group :test do
   gem "webdrivers"
 end
 
+gem "amazing_print"
+
+gem "pry"
+
 gem "hotwire-rails", "~> 0.1.3"
 
 gem "devise", "~> 4.8"
 
 gem "pagy", "~> 5.10"
+
+gem "noticed", "~> 1.5"
