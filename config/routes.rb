@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  resources :discussions, only: %i[index]
+  resources :discussions
 
   root to: "main#index"
 end
