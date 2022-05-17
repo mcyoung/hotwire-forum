@@ -1,0 +1,7 @@
+Hi <%= @user.username %>,
+
+<p>There's a new post in <strong><%= @post.discussion.name %></strong></p>
+
+<%= link_to "Click here to view", discussion_url(@post.discussion) %>
+
+Thanks!

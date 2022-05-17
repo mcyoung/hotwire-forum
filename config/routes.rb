@@ -21,5 +21,11 @@ Rails.application.routes.draw do
     end
   end
 
-  root to: "main#index"
+  unauthenticated do
+    root to: "main#index", as: :unauthenticated_root
+  end
+
+  authenticated do
+    root to: "discussions#index"
+  end
 end
