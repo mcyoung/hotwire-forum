@@ -11,7 +11,7 @@
           <%= link_to "Categories", categories_path, class: %w[nav-item nav-link] %>
           <%= link_to notifications_path, class: %w[nav-item nav-link d-flex] do %>
             Notifications
-            <%= turbo_stream_from "notifications" %>
+            <%= turbo_stream_from Current.user.id, "notifications" %>
             <%= render partial: "shared/notifications_count" %>
           <% end %>
         </ul>

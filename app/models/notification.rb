@@ -11,6 +11,7 @@ private
 
   def broadcast_notification_count
     broadcast_action_to(
+      recipient.id,
       "notifications",
       action: :replace,
       target: "notifications_count",
