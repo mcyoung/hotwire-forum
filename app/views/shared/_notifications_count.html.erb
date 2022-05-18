@@ -1,0 +1,9 @@
+<%= turbo_frame_tag "notifications_count" do %>
+  <% count ||= Current.user.notifications.unread.count %>
+
+  <% if count.positive? %>
+    <span class="badge bg-danger rounded-pill">
+      <%= count %>
+    </span>
+  <% end %>
+<% end %>

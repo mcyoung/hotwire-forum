@@ -5,11 +5,17 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <%= link_to "Discussions", discussions_path, class: %w[nav-item nav-link] %>
-        <%= link_to "Categories", categories_path, class: %w[nav-item nav-link] %>
-        <%= link_to "Notifications", notifications_path, class: %w[nav-item nav-link] %>
-      </ul>
+      <% if user_signed_in? %>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <%= link_to "Discussions", discussions_path, class: %w[nav-item nav-link] %>
+          <%= link_to "Categories", categories_path, class: %w[nav-item nav-link] %>
+          <%= link_to notifications_path, class: %w[nav-item nav-link d-flex] do %>
+            Notifications
+            <%= turbo_stream_from "notifications" %>
+            <%= render partial: "shared/notifications_count" %>
+          <% end %>
+        </ul>
+      <% end %>
 
       <ul class="navbar-nav mb-2 mb-lg-0">
         <% if user_signed_in? %>
